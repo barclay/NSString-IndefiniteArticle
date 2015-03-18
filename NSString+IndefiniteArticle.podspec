@@ -17,18 +17,24 @@ Pod::Spec.new do |s|
 
   s.name         = "NSString+IndefiniteArticle"
   s.version      = "0.0.1"
-  s.summary      = "A short description of NSString+IndefiniteArticle."
+  s.summary      = "An NSString category for providing an indefinite articles (a|an)"
 
   s.description  = <<-DESC
-                   A longer description of NSString+IndefiniteArticle in Markdown format.
+                    An NSString category for providing indefinite articles (a|an)
+                    for a given string.
 
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
+                    For example:
+
+                    *  `[NSString indefiniteArticleForString:@"elipis"] => @"an"`
+                    *  `[NSString indefiniteArticleForString:@"taco"] => @"a"`
+
+                    or you can call it on a given string:
+
+                    * `[@"historic event" indefiniteArticle] => @"a"`
+
                    DESC
 
-  s.homepage     = "http://EXAMPLE/NSString+IndefiniteArticle"
+  s.homepage     = "https://github.com/barclay/NSString-IndefiniteArticle"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -39,8 +45,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.license      = { :type => "MIT", :file => "LICENSE" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -56,7 +61,7 @@ Pod::Spec.new do |s|
   s.author             = { "barclay loftus" => "barclay@distinctpixel.com" }
   # Or just: s.author    = "barclay loftus"
   # s.authors            = { "barclay loftus" => "barclay@distinctpixel.com" }
-  # s.social_media_url   = "http://twitter.com/barclay loftus"
+  s.social_media_url   = "http://twitter.com/barclay"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -78,7 +83,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/NSString+IndefiniteArticle.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/barclay/NSString-IndefiniteArticle.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -128,7 +133,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
