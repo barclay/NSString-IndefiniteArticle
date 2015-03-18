@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NSString+IndefiniteArticle"
-  s.version      = "0.0.1"
+  s.version      = "0.1.0"
   s.summary      = "An NSString category for providing an indefinite articles (a|an)"
 
   s.description  = <<-DESC
