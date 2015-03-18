@@ -29,8 +29,8 @@ For example:
 [NSString indefiniteArticleForString:@"taco"]   //  -> @"a"  
 
 // or you can call it on a given string:                       
-[@"historic event" indefiniteArticle]           // -> @"a"` 
-[@"USB cable" indefiniteArticle]                // -> @"a"` 
+[@"historic event" indefiniteArticle]           // -> @"a"
+[@"USB cable" indefiniteArticle]                // -> @"a"
 ```
 
 --
