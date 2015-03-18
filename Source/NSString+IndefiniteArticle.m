@@ -32,13 +32,13 @@
     //
     NSString *an_patterns = @"^(([aefhilmnorsx]$)|(hono|honest|hour|heir|[aeiou]|8))";
     
-    // Capital words or abbreviations which should likely be preceeded by an a
-    // "domino eata a UUID, a URL, a JOB"
+    // Capital words or abbreviations which should likely be preceeded by an "a":
+    //    Domino eata a UUID, a URL, a JOB
     //
     NSString *upper_case_a_patterns = @"^([BCDJKPQTUVWYZ][A-Z]+)";
     
-    // Capital words which should likely be preceeded by an a
-    // Domino eats an API, an LP
+    // Capital words which should likely be preceeded by an "a":
+    //    Domino eats an API, an LP, an HOV
     //
     NSString *upper_case_an_patterns = @"^([AEFHILMNORSX][A-Z]+)";;
     
@@ -46,7 +46,7 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\w+" options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *matches = [regex matchesInString:str options:0 range:NSMakeRange(0, str.length)];
 
-    // weird case: no match (input was nil, or empty), return empty string
+    // weird case: no match (input was empty), we'll just return nothing.
     //
     if ([matches count] == 0)
         return @"";
@@ -54,8 +54,8 @@
     // Get the first word in the string
     //
     NSString *word = [str substringWithRange:[[matches objectAtIndex:0] range]];
-        
-    // uppercase an
+    
+    // case sensitive matching...
     //
     regex = [NSRegularExpression regularExpressionWithPattern:upper_case_an_patterns options:0 error:&error];
     matches = [regex matchesInString:word options:0 range:NSMakeRange(0, word.length)];
@@ -63,21 +63,17 @@
         return an;
     }
     
-    // uppercase a
-    //
     regex = [NSRegularExpression regularExpressionWithPattern:upper_case_a_patterns options:0 error:&error];
     matches = [regex matchesInString:word options:0 range:NSMakeRange(0, word.length)];
     if ([matches count] > 0) {
         return a;
     }
 
-    // insensitive a
+    // insensitive...
     //
     regex = [NSRegularExpression regularExpressionWithPattern:a_patterns options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *a_matches = [regex matchesInString:word options:0 range:NSMakeRange(0, word.length)];
 
-    // insenstive an
-    //
     regex = [NSRegularExpression regularExpressionWithPattern:an_patterns options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *an_matches = [regex matchesInString:word options:0 range:NSMakeRange(0, word.length)];
 
@@ -91,7 +87,7 @@
         return an;
     }
     
-    // all else gets an a.
+    // anything else gets an a.
     //
     return a;
 }
