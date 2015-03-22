@@ -27,8 +27,8 @@
     // specific "an" patterns
     //   words starting with a soft h: domino eats an hour, an honest man.
     //   words starting with a soft vowel: domino eats an apple, an elephant, an orange
-    //   or anything that leads with 8: domino eats an 8, an 800 lb gorilla
     //   or any single letters with a soft vowel sound: domino eats an a, an a, an r, an x
+    //   or anything that leads with 8: domino eats an 8, an 800 lb gorilla
     //
     NSString *an_patterns = @"^(([aefhilmnorsx]$)|(hono|honest|hour|heir|[aeiou]|8))";
     
@@ -46,10 +46,20 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\w+" options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *matches = [regex matchesInString:str options:0 range:NSMakeRange(0, str.length)];
 
-    // weird case: no match (input was empty), we'll just return nothing.
+    // weird case: no match (input was empty), this could happen if it's either
+    // an empty string, or something non-word charactor like.
     //
-    if ([matches count] == 0)
-        return @"";
+    if ([matches count] == 0) {
+        
+        // if it's truly empty, then return empty.
+        //
+        if ([str length] == 0)
+            return @"";
+        
+        // otherwise, let's defualt to an "a", i.e. "a ©".
+        //
+        return a;
+    }
     
     // Get the first word in the string
     //

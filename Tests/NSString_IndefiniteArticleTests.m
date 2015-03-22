@@ -40,7 +40,7 @@
     XCTAssertEqualObjects([@"z" indefiniteArticle], @"a");
 }
 
-- (void)testSpecialHCases
+- (void)testSpecialSoftHCases
 {
     XCTAssertEqualObjects([@"hourly" indefiniteArticle], @"an");
     XCTAssertEqualObjects([@"honest" indefiniteArticle], @"an");
@@ -54,16 +54,6 @@
     XCTAssertEqualObjects([@"zebra" indefiniteArticle], @"a");
 }
 
-- (void)testSpecialCapitalCases
-{
-    XCTAssertEqualObjects([@"MN"  indefiniteArticle], @"an");
-    XCTAssertEqualObjects([@"FAA" indefiniteArticle], @"an");
-    XCTAssertEqualObjects([@"JOB" indefiniteArticle], @"a");
-    XCTAssertEqualObjects([@"URL" indefiniteArticle], @"a");
-    XCTAssertEqualObjects([@"USB" indefiniteArticle], @"a");
-    XCTAssertEqualObjects([@"XIP" indefiniteArticle], @"an");
-}
-
 - (void)testWordsThatBeginWithVowels
 {
     XCTAssertEqualObjects([@"elipsis" indefiniteArticle], @"an");
@@ -75,6 +65,23 @@
     XCTAssertEqualObjects([@"unified front" indefiniteArticle], @"a");
     XCTAssertEqualObjects([@"UN ambassedor" indefiniteArticle], @"a");
     XCTAssertEqualObjects([@"UK representitive" indefiniteArticle], @"a");
+}
+
+- (void)testSpecialCapitalizedCases
+{
+    XCTAssertEqualObjects([@"MN"  indefiniteArticle], @"an");
+    XCTAssertEqualObjects([@"FAA" indefiniteArticle], @"an");
+    XCTAssertEqualObjects([@"JOB" indefiniteArticle], @"a");
+    XCTAssertEqualObjects([@"URL" indefiniteArticle], @"a");
+    XCTAssertEqualObjects([@"USB" indefiniteArticle], @"a");
+    XCTAssertEqualObjects([@"XIP" indefiniteArticle], @"an");
+}
+
+- (void)testOddCases
+{
+    XCTAssertEqualObjects([@"\"quoted\"" indefiniteArticle], @"a");
+    XCTAssertEqualObjects([@" leading space" indefiniteArticle], @"a");
+    XCTAssertEqualObjects([@"®" indefiniteArticle], @"a");
 }
 
 @end
